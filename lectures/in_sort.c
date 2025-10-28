@@ -1,9 +1,15 @@
-/* Implementing insertion sort in C */
-
 #include<stdio.h>
 
 void insertion_sort(int num[], int n) {
-    /* TODO: implement insertion sort */
+    for (int i=1; i<=n; i++) {
+        int k = num[i];
+        int j = i - 1;
+        while (j >= 0 && num[j] > k) {
+            num[j + 1] = num[j];
+            j -= 1;
+        }
+        num[j + 1] = k;
+    }
 }
 
 int main() {

@@ -1,5 +1,3 @@
-/* Binary search */
-
 #include <stdio.h>
 
 int binary_search(int num[], int left, int right, int v); 
@@ -22,6 +20,18 @@ int main() {
 }
 
 int binary_search(int num[], int left, int right, int v) {
-    /* TODO: implement binary search */
+    
+    if (left > right) return -1;
+    
+    int mid = right / 2;
 
+    for (int i=0; i<mid; i++) {
+        if (num[mid] > v) {
+            mid -= 1;
+        } else if (num[mid] < v) {
+            mid += 1;
+        } else {
+            return mid;
+        }
+    }
 }
