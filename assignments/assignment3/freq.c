@@ -3,14 +3,22 @@
 #include <stdio.h>
 
 int getMSDigit(int x) {
-   /* TODO: extract the leading digit of integer x and return it */
+   for (int i=0; i<=(sizeof(x)/4); i++) {
+      x = x % 10;
+   }
+   return x;
 }
 
 int main() {
-   /* TODO: 
-    * Read input from the stdin till EOF
-    * For each integer, obtain the leading digit
-    * Calculate the frequencies of the leading digits
-    * Print the frequencies on stdout */
-    return 0;
+   int num;
+   int digits[2][10] = { {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0} };
+
+   while (scanf("%d", &num) == 1) {
+      getMSDigit(num);
+      digits[1][num]++;
+   }
+   
+   for (int i=0; i<=9; i++) printf("%d:%d ", digits[0][i], digits[1][i]);
+
+   return 0;
 }

@@ -19,7 +19,10 @@ int value(int coin){
 }
 
 int count(int amount, int maxCoin){
-  /* TODO: Count the number of ways to make change for 'amount' using coins with value <= the value of 'maxCoin' */
+  if (amount == 0) return 1;
+  if (amount < 0) return 0;
+  if (maxCoin == 1) return count(amount - maxCoin, maxCoin);
+  return (count(amount - maxCoin, maxCoin) + count(amount, maxCoin / 2));
 }
 
 int main(int argc, char* argv[]){
