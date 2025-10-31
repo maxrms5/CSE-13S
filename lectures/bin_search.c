@@ -20,18 +20,17 @@ int main() {
 }
 
 int binary_search(int num[], int left, int right, int v) {
-    
-    if (left > right) return -1;
-    
-    int mid = right / 2;
 
-    for (int i=0; i<mid; i++) {
-        if (num[mid] > v) {
-            mid -= 1;
-        } else if (num[mid] < v) {
-            mid += 1;
-        } else {
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        if (v == num[mid]) {
             return mid;
+        } else if (v < num[mid]) {
+            right = mid - 1;
+        } else {
+            left = mid + 1;
         }
     }
+
+    return -1;
 }

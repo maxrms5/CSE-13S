@@ -9,7 +9,7 @@
 int value(int coin){
   if(coin == OCTANOL){
     return 8;
-  } else if(coin == BUTANOL ){
+  } else if(coin == BUTANOL){
     return 4;
   } else if(coin == ETHANOL){
     return 2;
@@ -21,8 +21,10 @@ int value(int coin){
 int count(int amount, int maxCoin){
   if (amount == 0) return 1;
   if (amount < 0) return 0;
-  if (maxCoin == 1) return count(amount - maxCoin, maxCoin);
-  return (count(amount - maxCoin, maxCoin) + count(amount, maxCoin / 2));
+  if (value(maxCoin) == 1) return count(amount - value(maxCoin), maxCoin);
+  else if (value(maxCoin) == 2) return (count(amount - value(maxCoin), maxCoin) + count(amount, METHANOL));
+  else if (value(maxCoin) == 4) return (count(amount - value(maxCoin), maxCoin) + count(amount, ETHANOL));
+  else return (count(amount - value(maxCoin), maxCoin) + count(amount, BUTANOL));
 }
 
 int main(int argc, char* argv[]){

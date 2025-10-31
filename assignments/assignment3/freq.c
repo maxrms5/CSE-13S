@@ -3,10 +3,14 @@
 #include <stdio.h>
 
 int getMSDigit(int x) {
-   for (int i=0; i<=(sizeof(x)/4); i++) {
-      x = x % 10;
+
+   int msd = 0; 
+
+   while (x != 0) {
+      msd = x % 10;    
+      x /= 10;  
    }
-   return x;
+   return msd;
 }
 
 int main() {
@@ -14,8 +18,8 @@ int main() {
    int digits[2][10] = { {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0} };
 
    while (scanf("%d", &num) == 1) {
-      getMSDigit(num);
-      digits[1][num]++;
+      int sig = getMSDigit(num);
+      digits[1][sig] += 1;
    }
    
    for (int i=0; i<=9; i++) printf("%d:%d ", digits[0][i], digits[1][i]);
