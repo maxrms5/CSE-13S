@@ -1,14 +1,23 @@
-
 #include <stdio.h>
 
 void trim(char s[]) {
-   /* TODO: remove all trailing spaces at the end of the string s. any other spaces in-between the string must be preserved.
-    * Note that you cannot make use of built-in string library functions. You will not earn any points if you do.
-    * Your code will be manually checked for this and your grade may be overwritten. 
-    * 
-    * You may, however, write your own string functions that you need.
-    */
+   int i = 0; // current index
+   int end_index = 0; // last non-whitespace character index in array
 
+   while (1) {
+      char curr_char = *(s + i); // dereferencing pointer to s[i]
+      if (curr_char <= 0) break; // null char, end of str
+      if (curr_char != ' ' && curr_char != '\t' && curr_char != '\n' && curr_char != '\r') {
+         if (end_index < i) end_index = i; // updates with highest index of a non-whitespace char
+      }
+      i++;
+   }
+
+   int j = i; // total length of string
+   while (j > end_index) {
+      *(s + j) = 0; // sets trailing whitespaces to null, dereferencing pointer to s[j]
+      j--;
+   }
 }
 
 int main() {
