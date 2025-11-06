@@ -11,22 +11,27 @@ typedef struct {
 } Animal;
 
 int has_b(const char *s) {
-    /* TODO: Return true (1) if the name s has the character 'b' in it. Otherwise, return false (0). 
-             The strchr() function may come in handy. Use the man page to understand how it works. */
-    
+    char b = 'b';
+    const char *result = strchr(s, b);
+    if (result != NULL) return 1;
+    return 0;
 }
 
 int should_keep(Animal *a) {
-    /* TODO: Return true (1) if the animal meets the filtering criteria. Otherwise, return false (0). */
-    
+    const char *name = a->name;
+    int age = a->age;
+    float weight = a->weight;
+
+    if (has_b(name)) return 1;
+    else if (age > 15) return 1;
+    else if (weight > 200.0) return 1;
+    else return 0;
 }
 
 int compare_animals(Animal *A, Animal *B) {
-    /* TODO: Compare animals pointed to by A and B based on the sorting criteria.
-             Return 0 if the animal pointed to by A is equal to the animal pointed to by B.
-             Return a negative value if the animal pointed to by A is smaller than the animal pointed to by B.
-             Else, return a positive value. */
-
+    if (strcmp(A->species, B->species) == 0) return 0;
+    else if (A->age != B->age) return (B->age - A->age);
+    else return (strcmp(A->name, B->name)); 
 }
 
 void sort_animals(Animal *arr, int size) {
