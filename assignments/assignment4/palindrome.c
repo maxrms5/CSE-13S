@@ -13,16 +13,23 @@ int main() {
 
     for (int i=0; i<str_len; i++) *(str + i) = tolower(*(str + i)); // lowercase all letters
 
-    for (int i=0; i<(str_len / 2); i++) {
-        int j = str_len - i - 1; // j is end index of str (i is start index)
-        
-        if (!isalnum(*(str + i))) i++; // skips over non alphanumeric chars
-        if (!isalnum(*(str + j))) j++; // skips over non alphanumeric chars
+    int j = str_len - 1; // end of string index
 
-        if (*(str + i) != *(str + j)) {
+    for (int i=0; i<(str_len / 2); i++) { // start of string index
+        char char_i = *(str + i);
+        char char_j = *(str + j);
+
+        if (!isalnum(char_i)) i++; // skips over non alphanumeric chars
+        if (!isalnum(char_j)) j--; // skips over non alphanumeric chars
+
+        char_i = *(str + i); 
+        char_j = *(str + j);
+
+        if (char_i != char_j) {
             printf("The string is not a palindrome.");
             return 0;
         }
+        j--;
     }
     printf("The string is a palindrome.");
     return 0;

@@ -18,26 +18,33 @@ int has_b(const char *s) {
 }
 
 int should_keep(Animal *a) {
-    const char *name = a->name;
-    int age = a->age;
-    float weight = a->weight;
-
-    if (has_b(name)) return 1;
-    else if (age > 15) return 1;
-    else if (weight > 200.0) return 1;
+    if (has_b(a->name)) return 1;
+    else if (a->age > 15) return 1;
+    else if (a->weight > 200.0) return 1;
     else return 0;
 }
 
 int compare_animals(Animal *A, Animal *B) {
-    if (strcmp(A->species, B->species) == 0) return 0;
+    if (strcmp(A->species, B->species) != 0) return strcmp(A->species, B->species);
     else if (A->age != B->age) return (B->age - A->age);
     else return (strcmp(A->name, B->name)); 
 }
 
 void sort_animals(Animal *arr, int size) {
-    /* TODO: Sort the animals stored in the array arr using Bubble Sort. 
-             Your implementation must call the function compare_animals(). */
-
+    Animal x, y; // temp vars for swapping
+    for (int i=0; i<size-1; i++) { // iterates over every element
+        for (int j=0; j<size-i-1; j++) { // iterates over every element and places target element
+            Animal *curr = (arr + j);
+            Animal *next = (arr + j + 1);
+            int result = compare_animals(curr, next); // returns positive value if next should be higher in list
+            if (result > 0) {
+                x = *curr;
+                y = *next;
+                *curr = y;
+                *next = x;
+            }
+        }
+    }
 }
 
 int main() {
