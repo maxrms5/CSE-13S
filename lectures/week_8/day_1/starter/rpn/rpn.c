@@ -16,12 +16,35 @@ int main() {
    while (goOn && readToken(&tok) != 0) {
       switch(tok.type) {
          /* TODO: complete the following operations as explained in the pdf and above */
-         case LIT: /* Fill this in. */
-         case '+': /* Fill this in. */
-         case '*': /* Fill this in. */
-         case '-': /* Fill this in. */
-         case '/': /* Fill this in. */            
-         case 'p': /* Fill this in. */          
+         case LIT:
+            pushStack(s, tok.value);
+            break;
+         case '+': 
+            pushStack(s, popStack(s) + popStack(s));
+            break;
+         case '*': 
+            pushStack(s, popStack(s) * popStack(s));
+            break;
+         case '-': 
+            int v1, v2;
+            v1 = popStack(s);
+            v2 = popStack(s);
+            pushStack(s, v2 - v1);
+            break;
+         case '/': 
+            int v3, v4;
+            v1 = popStack(s);
+            if (v1 == 0) {
+               perror("Error! Division by 0.\n");
+               break;
+            }
+            v2 = popStack(s);
+            pushStack(s, v2 / v1);
+            break;          
+         case 'p': 
+            int value = popStack(s);
+            printf("%d\n", value);
+            break;
          case 'q': goOn = 0; break;
       }
    }
