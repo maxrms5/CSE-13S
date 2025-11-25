@@ -1,0 +1,13 @@
+OFILES = list.o listTest.o
+CFLAGS = -g -c
+
+all: listTest
+
+listTest: $(OFILES)
+	cc -g $(OFILES) -o $@
+
+%.o: %.c list.h
+	cc $(CFLAGS) $<
+
+clean:
+	rm -rf *.o *~ listTest

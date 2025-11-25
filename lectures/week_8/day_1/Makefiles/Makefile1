@@ -1,0 +1,13 @@
+all: listTest
+
+listTest: list.o listTest.o 
+	cc -g list.o listTest.o -o listTest
+
+list.o: list.c list.h
+	cc -g -c list.c
+
+listTest.o: listTest.c list.h
+	cc -g -c listTest.c
+
+clean:
+	rm -rf *.o *~ listTest
