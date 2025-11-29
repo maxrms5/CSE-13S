@@ -10,7 +10,6 @@ int print_matched_lines(const char *s, const char *filename) {
 
     FILE *fptr = fopen(filename, "r"); // open file in a buffer, and assign ptr to start of buffer
     if (fptr == NULL) { // checks for successful closing of file
-        perror("Error opening file\n");
         return -1; // checks to make sure file was able to be opened
     }
 
@@ -27,7 +26,6 @@ int print_matched_lines(const char *s, const char *filename) {
     }
 
     if (fclose(fptr) != 0) { 
-        perror("Error closing file\n");
         return -1; 
     }
 
